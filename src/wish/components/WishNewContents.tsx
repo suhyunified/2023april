@@ -23,7 +23,6 @@ import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
 const WishNewContents = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const context = useContext(WishFormContext);
 
   const editWish = useEditWish();

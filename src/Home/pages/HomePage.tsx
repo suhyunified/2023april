@@ -9,7 +9,7 @@ import Text from "@/shared/components/Text";
 import { colors, LOGIN_COOKIE_KEY } from "@/shared/constants";
 import { api } from "@/shared/utils/axios";
 import { getCookie } from "@/shared/utils/cookie";
-import { useGetWishList } from "@/wish/hooks/apis/useGetWishList";
+
 import { WishInfoType, WishSort } from "@/wish/types";
 import { GetWish, GetWishList } from "@/wish/types/apis";
 import { parse } from "query-string/base";

@@ -4,11 +4,10 @@ import Text from "@/shared/components/Text";
 import { colors } from "@/shared/constants";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const MypageEmpty = () => {
-  const router = useHistory();
+  const navigate = useNavigate();
   return (
     <Container>
       <div
@@ -29,9 +28,7 @@ const MypageEmpty = () => {
           flex: 1;
         `}
       />
-      <Button onClick={() => router.push("/wish/new")}>
-        나의 소원 작성하기
-      </Button>
+      <Button onClick={() => navigate("/wish/new")}>나의 소원 작성하기</Button>
     </Container>
   );
 };

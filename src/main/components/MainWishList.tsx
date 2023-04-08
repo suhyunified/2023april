@@ -1,14 +1,7 @@
 import Spacing from "@/shared/components/Spacing";
-import Switch from "@/shared/components/Switch";
-import Text from "@/shared/components/Text";
-import { colors } from "@/shared/constants";
-import { WishNewStep } from "@/wish/constants";
-import { useGetWishList } from "@/wish/hooks/apis/useGetWishList";
-import { WishInfoType, WishSort } from "@/wish/types";
-import { GetWishList } from "@/wish/types/apis";
+
+import { WishInfoType } from "@/wish/types";
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { ListOrderBy } from "../constants";
 import MainWishItem from "./MainWishItem";
 
 interface Props {
