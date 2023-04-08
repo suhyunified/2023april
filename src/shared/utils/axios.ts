@@ -34,4 +34,12 @@ export const api = {
   ): Promise<R> => {
     return await instance.post(url, data, getConfigs(config));
   },
+
+  patch: async <T = any, R = ApiResponse<T>, D = any>(
+    url: string,
+    data?: D,
+    config: AxiosRequestConfig<D> = {}
+  ): Promise<R> => {
+    return await instance.patch(url, data, getConfigs(config));
+  },
 };

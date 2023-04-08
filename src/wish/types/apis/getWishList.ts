@@ -1,4 +1,5 @@
 import { GetWish } from ".";
+import { WishInfoType } from "..";
 
 export interface RequestQuery {
   page: number;
@@ -10,5 +11,5 @@ export interface Response {
   totalItems: number;
   currentPage: number;
   lastPage: number;
-  data: GetWish.Response["data"][];
+  data: WishInfoType[];
 }

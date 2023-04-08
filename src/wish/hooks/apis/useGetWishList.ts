@@ -1,10 +1,16 @@
 import { GetWishList } from "@/wish/types/apis";
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { queryKeys } from "./queryKeys";
 import service from "./service";
 
-export const useGetWishList = ({ page, sort }: GetWishList.RequestQuery) => {
-  return useQuery(queryKeys.getWishList(page, sort), () =>
-    service.getWishList({ page, sort })
-  );
+export const useGetWishList = () => {
+  return useInfiniteQuery(["page", "sort"], service.getWishList, {
+    getNextPageParam: (lastPage) => {
+      const nextPage = lastPage.data.currentPage + 1;
+
+      return nextPage > lastPage.data.lastPage
+        ? lastPage.data.lastPage
+        : nextPage;
+    },
+  });
 };

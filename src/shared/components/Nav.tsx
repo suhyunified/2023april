@@ -1,8 +1,16 @@
 import styled from "@emotion/styled";
 import { colors } from "../constants";
+import BackButton from "./BackButton";
 
-const Nav = () => {
-  return <NavContainer></NavContainer>;
+interface Props {
+  onBack?: () => void;
+}
+const Nav = ({ onBack }: Props) => {
+  return (
+    <NavContainer>
+      <BackButton onClick={onBack} />
+    </NavContainer>
+  );
 };
 
 export default Nav;

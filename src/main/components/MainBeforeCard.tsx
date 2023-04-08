@@ -9,8 +9,13 @@ import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ProfileButton from "@/shared/components/ProfileButton";
+import { IconProfile } from "@/shared/images";
 
-const MainBeforeCard = () => {
+interface Props {
+  counts: number;
+}
+const MainBeforeCard = ({ counts }: Props) => {
   const navigate = useNavigate();
   const { error } = useGetProfile();
 
@@ -23,6 +28,7 @@ const MainBeforeCard = () => {
   return (
     <>
       <CardContents>
+        <ProfileButton />
         <Text
           size={1.375}
           weight={500}
@@ -31,7 +37,7 @@ const MainBeforeCard = () => {
         >
           벌써 소원 나무에
           <br />
-          5,780개의 소원이 걸렸어요!
+          {counts.toLocaleString()}개의 소원이 걸렸어요!
         </Text>
         <Spacing size={1.25} />
         <Text weight={500} color={colors.gray300}>
@@ -100,4 +106,13 @@ const RabbitContainer = styled.div`
 const RabbitImage = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+const ProfileWrapper = styled.div`
+  position: absolute;
+  cursor: pointer;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
 `;

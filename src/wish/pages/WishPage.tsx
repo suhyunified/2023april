@@ -32,7 +32,7 @@ const WishPage = () => {
 
   return (
     <Layout>
-      <Nav />
+      <Nav onBack={() => navigate("/")} />
       <Contents>
         <WishInfo wish={data?.data.data} />
       </Contents>

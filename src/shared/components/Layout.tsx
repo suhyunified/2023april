@@ -5,14 +5,15 @@ import Spacing from "./Spacing";
 
 interface Props {
   children: React.ReactNode;
+  noPadding?: boolean;
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, noPadding = false }: Props) => {
   return (
     <Wrapper>
-      <Container>
+      <Container $noPadding={noPadding}>
         {children}
-        <Spacing size={1.875} />
+        {!noPadding && <Spacing size={1.875} />}
       </Container>
     </Wrapper>
   );
@@ -26,12 +27,13 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ $noPadding: boolean }>`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1;
   max-width: ${MAX_WIDTH}px;
   min-width: 320px;
-  padding: 0 ${CONTAINER_PADDING_REM}rem;
+  padding: 0 ${({ $noPadding }) => ($noPadding ? 0 : CONTAINER_PADDING_REM)}rem;
   color: ${colors.white};
 `;

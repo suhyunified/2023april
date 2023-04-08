@@ -7,7 +7,7 @@ export const usePostReaction = () => {
   return useMutation((wishId: number) => service.postReaction({ wishId }), {
     onSuccess: (data, variables, context) => {
       console.log(data, variables, context);
-      //   reactQuery.queryClient.invalidateQueries();
+      reactQuery.queryClient.invalidateQueries(queryKeys.getWish(variables));
     },
   });
 };

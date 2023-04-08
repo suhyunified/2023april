@@ -15,27 +15,49 @@ import FlexGrow from "@/shared/components/FlexGrow";
 import { ApiResponse } from "@/shared/types/api";
 import { CreateWish } from "../types/apis";
 import { WishFormContext } from "../context/wishForm";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEditWish } from "../hooks/apis/useEditWish";
+import { useGetMyWish } from "../hooks/apis/useGetMyWish";
+import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
 
 const WishNewContents = () => {
   const navigate = useNavigate();
-  const context = useContext(WishFormContext);
-  const { mutateAsync, isLoading } = useCreateWish();
+  const location = useLocation();
 
+  const context = useContext(WishFormContext);
+
+  const editWish = useEditWish();
+  const createWish = useCreateWish();
+  const getMyWish = useGetMyWish();
+  const getProfile = useGetProfile();
   const [contents, setContents] = useState("");
-  console.log(context);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isLoading = createWish.isLoading || editWish.isLoading;
+  const mode = location.pathname === "/wish/edit" ? "edit" : "create";
+
+  if (mode === "edit" && !getMyWish.data?.data.data.id) {
+    navigate("/profile");
+  }
 
   const handleSubmit = async () => {
     if (isLoading) return;
 
     try {
       const { category, title } = context;
-      const response = await mutateAsync({
+      const params = {
         title,
         category,
         content: contents,
-      });
+      };
+
+      const response =
+        mode === "edit" && getMyWish.data?.data
+          ? await editWish.mutateAsync({
+              wishId: getMyWish.data?.data.data.id,
+              ...params,
+            })
+          : await createWish.mutateAsync(params);
 
       const {
         data: {
@@ -49,7 +71,6 @@ const WishNewContents = () => {
   };
   return (
     <>
-      <Nav />
       <Spacing size={2} />
       <Flex fullWidth justifyContents="center">
         <Category type={context.category} />
@@ -64,7 +85,7 @@ const WishNewContents = () => {
       >
         {context.title}
         <br />
-        도라에몽스
+        {getProfile.data?.data.data.nickname}
       </Text>
       <FlexGrow minHeight={5} />
       <Textarea

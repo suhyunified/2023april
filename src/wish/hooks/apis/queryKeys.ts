@@ -1,9 +1,9 @@
 export const queryKeys = {
-  base: ["login"],
+  base: ["wish"],
   kakaoLogin: () => [...queryKeys.base, "kakao"] as const,
   getProfile: () => [...queryKeys.base, "get", "profile"] as const,
-  getWish: (wishId: number) =>
-    [...queryKeys.base, "get", "wish", wishId] as const,
+  getWish: (wishId: number) => [...queryKeys.base, "get", , wishId] as const,
   getWishList: (page: number, sort: string) =>
-    [...queryKeys.base, "get", "wishList", page, sort] as const,
+    [...queryKeys.base, "get", "list", page, sort] as const,
+  getMyWish: () => [...queryKeys.base, "get", "my"] as const,
 };

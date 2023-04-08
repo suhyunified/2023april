@@ -28,7 +28,6 @@ const WishNewCategory = ({ onSubmit }: Props) => {
 
   return (
     <>
-      <Nav />
       <Spacing size={2} />
       <Text size={1.375} weight={600} lineHeight={1.875} align="center">
         소원을 하나 들어줄게요.

@@ -1,31 +1,24 @@
-import Page from "@/shared/components/Page";
 import WishNewStyle from "@/wish/components/WishNewStyle";
 import WishNewCategory from "@/wish/components/WishNewCategory";
 import WishNewContents from "@/wish/components/WishNewContents";
 
 import { CreateWish } from "@/wish/types/apis";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { css } from "@emotion/react";
+import { useState } from "react";
 import { WishFormContext } from "@/wish/context/wishForm";
 import Layout from "@/shared/components/Layout";
 import { WishNewStep } from "@/wish/constants";
-import Nav from "@/shared/components/Nav";
-import { useNavigate } from "react-router-dom";
+import { useGetMyWish } from "../hooks/apis/useGetMyWish";
 
-const WishNewPage = () => {
-  const navigate = useNavigate();
+const WishEditPage = () => {
+  const { data } = useGetMyWish();
+  console.log(data);
+
   const [step, setStep] = useState<WishNewStep>(WishNewStep.Category);
   const [form, setForm] = useState<CreateWish.RequestBody>({
     category: "coin",
     content: "",
     title: "",
   });
-
-  const handleBackClick = () => {
-    if (step === WishNewStep.Category) navigate(-1);
-    else if (step === WishNewStep.Style) setStep(WishNewStep.Category);
-    else if (step === WishNewStep.Contents) setStep(WishNewStep.Style);
-  };
 
   return (
     <WishFormContext.Provider
@@ -35,7 +28,6 @@ const WishNewPage = () => {
       }}
     >
       <Layout>
-        <Nav onBack={handleBackClick} />
         {step === WishNewStep.Category && (
           <WishNewCategory onSubmit={() => setStep(WishNewStep.Style)} />
         )}
@@ -48,4 +40,4 @@ const WishNewPage = () => {
   );
 };
 
-export default WishNewPage;
+export default WishEditPage;

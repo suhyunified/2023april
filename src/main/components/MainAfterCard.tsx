@@ -7,21 +7,27 @@ import Button from "@/shared/components/Button";
 import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
 
 import React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
+import ProfileButton from "@/shared/components/ProfileButton";
 
-const MainAfterCard = () => {
-  const router = useHistory();
+interface Props {
+  counts: number;
+}
+const MainAfterCard = ({ counts }: Props) => {
+  const navigate = useNavigate();
   const { error } = useGetProfile();
 
   const handlePostingButtonClick = () => {
-    if (error) return router.push("/login");
+    if (error) return navigate("/login");
 
-    router.push("/wish/new");
+    navigate("/wish/new");
   };
 
   return (
     <>
       <CardContents>
+        <ProfileButton />
+
         <Text
           size={1.375}
           weight={500}
@@ -29,9 +35,9 @@ const MainAfterCard = () => {
           lineHeight={1.875}
           align="center"
         >
-          지금 6,890명의 사람들이
+          지금 {counts.toLocaleString()}명의 사람들의
           <br />
-          소원 작성하는 중
+          소원이 이루어지는 중이에요!
         </Text>
       </CardContents>
 

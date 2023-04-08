@@ -10,14 +10,21 @@ import { useEffect, useRef, useState } from "react";
 import MainBeforeCard from "./MainBeforeCard";
 import MainAfterCard from "./MainAfterCard";
 import { useNavigate } from "react-router-dom";
+import { useGetMyWish } from "@/wish/hooks/apis/useGetMyWish";
 
 const HERO_HEIGHT_PX = 472;
 
-const MainHero = () => {
+interface Props {
+  counts: number;
+}
+const MainHero = ({ counts }: Props) => {
   const navigate = useNavigate();
   const { error } = useGetProfile();
+  const getMyWish = useGetMyWish();
   const FloatingBox = useRef<HTMLDivElement>(null);
   const [isFloatingNav, setIsFloatingNav] = useState(false);
+
+  const myWish = getMyWish.data?.data.data;
 
   const onScroll = () => {
     const scrollTop = document.scrollingElement?.scrollTop || 0;
@@ -45,24 +52,28 @@ const MainHero = () => {
             height: ${HERO_HEIGHT_PX}px;
           `}
         >
-          <MainBeforeCard />
-          {/* <MainAfterCard /> */}
+          {myWish ? (
+            <MainAfterCard counts={counts} />
+          ) : (
+            <>
+              <NavWrapper isFloating={isFloatingNav}>
+                <Nav isFloating={isFloatingNav}>
+                  <Spacing size={1.25} />
+                  <Text weight={700} align="center">
+                    나의 소원도 작성해 볼까요?
+                  </Text>
+                  <Spacing size={1.125} />
+                  <Button variant="white" onClick={handlePostingButtonClick}>
+                    작성하기
+                  </Button>
+                  <Spacing size={1.25} />
+                </Nav>
+              </NavWrapper>
+              <MainBeforeCard counts={counts} />
+            </>
+          )}
         </Card>
       </Container>
-
-      <NavWrapper isFloating={isFloatingNav}>
-        <Nav isFloating={isFloatingNav}>
-          <Spacing size={1.25} />
-          <Text weight={700} align="center">
-            나의 소원도 작성해 볼까요?
-          </Text>
-          <Spacing size={1.125} />
-          <Button variant="white" onClick={handlePostingButtonClick}>
-            작성하기
-          </Button>
-          <Spacing size={1.25} />
-        </Nav>
-      </NavWrapper>
     </>
   );
 };
@@ -73,8 +84,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  flex: 1;
 
   color: ${colors.gray300};
 `;
@@ -108,10 +117,13 @@ const NavWrapper = styled.div<NavWrapperProps>`
   ${({ isFloating }) =>
     isFloating
       ? css`
+          visibility: visible;
+
           opacity: 1;
           transform: translateY(0);
         `
       : css`
+          visibility: hidden;
           opacity: 0;
           transform: translateY(-20px);
         `}

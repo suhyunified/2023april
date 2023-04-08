@@ -10,7 +10,7 @@ interface Props {
   wishId: number;
 }
 const LikeButton = ({ wishId }: Props) => {
-  const { mutate } = usePostReaction();
+  const { mutate, isLoading } = usePostReaction();
 
   return (
     <Button
@@ -18,7 +18,7 @@ const LikeButton = ({ wishId }: Props) => {
       style={{
         borderRadius: "100px",
       }}
-      onClick={() => mutate(wishId)}
+      onClick={() => !isLoading && mutate(wishId)}
     >
       <Flex alignItems="center">
         <IconSmile />

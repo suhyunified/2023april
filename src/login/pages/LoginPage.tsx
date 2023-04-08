@@ -24,6 +24,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutateAsync: login } = useLogin();
+  const getProfile = useGetProfile();
 
   const query = queryString.parse(location.search);
   const code = query?.code;
@@ -37,7 +38,8 @@ const LoginPage = () => {
       const { data } = await login({ code });
       const { accessToken } = data.data;
       setCookie(LOGIN_COOKIE_KEY, accessToken);
-      navigate("/");
+      console.log(getProfile);
+      navigate("/onboard");
     } catch (e) {
       setIsModalOpen(true);
     }
