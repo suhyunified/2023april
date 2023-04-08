@@ -39,10 +39,11 @@ const OnboardNicknamePage = () => {
         size={1.4}
         color={colors.white}
         weight={700}
-        lineHeight={1.8}
+        lineHeight={2}
         align="center"
       >
-        당신을 뭐라고 부를까요?
+        간절한 소원을 가진
+        <br /> 당신의 이름을 알려주세요
       </Text>
       <Spacing size={6.25} />
       <Input

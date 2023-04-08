@@ -16,3 +16,8 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "chosun";
+  src: url("/src/assets/fonts/ChosunCentennial_ttf.ttf") format("truetype");
+}

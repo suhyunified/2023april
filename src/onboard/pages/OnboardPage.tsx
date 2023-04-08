@@ -53,8 +53,8 @@ const OnboardPage = () => {
           (story, index) =>
             index === step && (
               <AnimationText>
-                <Text align="center" size={1.25} lineHeight={1.75}>
-                  {STORIES[index]}
+                <Text chosun align="center" size={1.25} lineHeight={1.75}>
+                  {story}
                 </Text>
               </AnimationText>
             )

@@ -10,12 +10,14 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   align?: "center" | "start" | "end";
   inline?: boolean;
   lineHeight?: number;
+  chosun?: boolean;
 }
 const Text = ({
   size = 1,
   color = "inherit",
   weight = 400,
   children,
+  chosun = false,
   align = "start",
   lineHeight,
   ...rest
@@ -33,6 +35,11 @@ const Text = ({
         word-break: inherit;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        ${chosun &&
+        css`
+          font-family: "chosun";
+        `}
       `}
     >
       {children}
