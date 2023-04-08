@@ -3,7 +3,7 @@ import { ApiResponse } from "../types/api";
 import { getCookie } from "./cookie";
 
 const instance = axios.create({
-  baseURL: "https://wishbone-api-ge3ydnrdua-du.a.run.app/api/v1",
+  baseURL: import.meta.env.VITE_API_DOMAIN,
 });
 
 const getConfigs = (
