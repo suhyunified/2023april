@@ -7,6 +7,7 @@ import Spacing from "@/shared/components/Spacing";
 import Switch from "@/shared/components/Switch";
 import Text from "@/shared/components/Text";
 import { colors, LOGIN_COOKIE_KEY } from "@/shared/constants";
+import useGuard from "@/shared/hooks/useGuard";
 import { api } from "@/shared/utils/axios";
 import { getCookie } from "@/shared/utils/cookie";
 
@@ -36,6 +37,10 @@ const ListOrderBySwitchOptions = [
 ];
 
 const HomePage = () => {
+  useGuard({
+    withAuth: true,
+    withNickname: true,
+  });
   const navigate = useNavigate();
   const isLogin = getCookie(LOGIN_COOKIE_KEY);
 

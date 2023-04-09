@@ -7,6 +7,7 @@ import Layout from "@/shared/components/Layout";
 import Spacing from "@/shared/components/Spacing";
 import Text from "@/shared/components/Text";
 import { colors } from "@/shared/constants";
+import useGuard from "@/shared/hooks/useGuard";
 import { ApiResponse } from "@/shared/types/api";
 import { css } from "@emotion/react";
 import { AxiosError } from "axios";
@@ -14,11 +15,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const OnboardNicknamePage = () => {
+  useGuard({
+    withAuth: true,
+    withNickname: false,
+  });
+
+  const navigate = useNavigate();
+  const { mutateAsync } = useSetNickname();
+
   const [nickname, setNickname] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-
-  const { mutateAsync } = useSetNickname();
 
   const handleButtonClick = async () => {
     try {

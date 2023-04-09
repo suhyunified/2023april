@@ -11,8 +11,13 @@ import Layout from "@/shared/components/Layout";
 import { WishNewStep } from "@/wish/constants";
 import Nav from "@/shared/components/Nav";
 import { useNavigate } from "react-router-dom";
+import useGuard from "@/shared/hooks/useGuard";
 
 const WishNewPage = () => {
+  useGuard({
+    withAuth: true,
+    withNickname: true,
+  });
   const navigate = useNavigate();
   const [step, setStep] = useState<WishNewStep>(WishNewStep.Category);
   const [form, setForm] = useState<CreateWish.RequestBody>({

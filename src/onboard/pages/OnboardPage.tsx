@@ -5,6 +5,7 @@ import Spacing from "@/shared/components/Spacing";
 import Text from "@/shared/components/Text";
 import { LOGIN_COOKIE_KEY } from "@/shared/constants";
 import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
+import useGuard from "@/shared/hooks/useGuard";
 import { getCookie } from "@/shared/utils/cookie";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -20,16 +21,13 @@ const STORIES = [
 ];
 
 const OnboardPage = () => {
-  const isLogin = getCookie(LOGIN_COOKIE_KEY);
-  const navigate = useNavigate();
-  const getProfile = useGetProfile();
-  const [step, setStep] = useState(0);
-  const [] = useState();
+  useGuard({
+    withAuth: true,
+    withNickname: false,
+  });
 
-  useEffect(() => {
-    if (!isLogin) navigate("/login");
-    if (getProfile.data?.data.data.nickname) navigate("/");
-  }, [isLogin]);
+  const navigate = useNavigate();
+  const [step, setStep] = useState(0);
 
   const handleNextClick = () => {
     if (STORIES.length > step + 1) setStep((prev) => prev + 1);

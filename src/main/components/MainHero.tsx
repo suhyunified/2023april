@@ -19,7 +19,7 @@ interface Props {
 }
 const MainHero = ({ counts }: Props) => {
   const navigate = useNavigate();
-  const { error } = useGetProfile();
+  const { error, isLoading } = useGetProfile();
   const getMyWish = useGetMyWish();
   const FloatingBox = useRef<HTMLDivElement>(null);
   const [isFloatingNav, setIsFloatingNav] = useState(false);
@@ -52,26 +52,27 @@ const MainHero = ({ counts }: Props) => {
             height: ${HERO_HEIGHT_PX}px;
           `}
         >
-          {myWish ? (
-            <MainAfterCard counts={counts} />
-          ) : (
-            <>
-              <NavWrapper isFloating={isFloatingNav}>
-                <Nav isFloating={isFloatingNav}>
-                  <Spacing size={1.25} />
-                  <Text weight={700} align="center">
-                    나의 소원도 작성해 볼까요?
-                  </Text>
-                  <Spacing size={1.125} />
-                  <Button variant="white" onClick={handlePostingButtonClick}>
-                    작성하기
-                  </Button>
-                  <Spacing size={1.25} />
-                </Nav>
-              </NavWrapper>
-              <MainBeforeCard counts={counts} />
-            </>
-          )}
+          {!getMyWish.isLoading &&
+            (myWish ? (
+              <MainAfterCard counts={counts} />
+            ) : (
+              <>
+                <NavWrapper isFloating={isFloatingNav}>
+                  <Nav isFloating={isFloatingNav}>
+                    <Spacing size={1.25} />
+                    <Text weight={700} align="center">
+                      나의 소원도 작성해 볼까요?
+                    </Text>
+                    <Spacing size={1.125} />
+                    <Button variant="white" onClick={handlePostingButtonClick}>
+                      작성하기
+                    </Button>
+                    <Spacing size={1.25} />
+                  </Nav>
+                </NavWrapper>
+                <MainBeforeCard counts={counts} />
+              </>
+            ))}
         </Card>
       </Container>
     </>

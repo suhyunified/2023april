@@ -27,7 +27,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutateAsync: login } = useLogin();
-  const getProfile = useGetProfile();
 
   const query = queryString.parse(location.search);
   const code = query?.code;

@@ -10,6 +10,7 @@ import Text from "@/shared/components/Text";
 
 import { colors } from "@/shared/constants";
 import { useGetProfile } from "@/shared/hooks/apis/user/useGetProfile";
+import useGuard from "@/shared/hooks/useGuard";
 import WishInfo from "@/wish/components/WishInfo";
 import { useGetMyWish } from "@/wish/hooks/apis/useGetMyWish";
 import { css } from "@emotion/react";
@@ -17,11 +18,14 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
-  const navigate = useNavigate();
-  const { data: profile, error } = useGetProfile();
-  const { data: myWish, isLoading } = useGetMyWish();
+  useGuard({
+    withAuth: true,
+    withNickname: true,
+  });
 
-  if (error) navigate("/login");
+  const navigate = useNavigate();
+  const { data: profile } = useGetProfile();
+  const { data: myWish, isLoading } = useGetMyWish();
 
   const user = profile?.data.data;
   const wish = myWish?.data.data;
