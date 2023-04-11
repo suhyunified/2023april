@@ -38,7 +38,7 @@ const StyledTextarea = styled.textarea`
   width: 100%;
   height: 100%;
 
-  size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.25rem;
   color: ${colors.gray100};

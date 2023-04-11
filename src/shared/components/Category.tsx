@@ -60,10 +60,7 @@ const Category = ({
         background-color: ${backgroundColor || colors.gray900};
       `}
     >
-      <img
-        css={css`
-          width: 100%;
-        `}
+      <StyledImage
         src={CATEGORY_MAPPER[type].icon}
         alt={`${CATEGORY_MAPPER[type].name}카테고리`}
       />
@@ -82,4 +79,9 @@ const Container = styled.div`
   cursor: pointer;
 
   border-radius: 50%;
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
 `;
