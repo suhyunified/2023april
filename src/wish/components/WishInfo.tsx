@@ -111,7 +111,7 @@ const Contents = styled.div`
 
   width: 100%;
   padding: 1rem;
-  min-height: 5rem;
+  min-height: 3rem;
   border-radius: 1.25rem;
   background-color: ${colors.white};
   word-break: break-all;
