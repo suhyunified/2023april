@@ -81,8 +81,9 @@ const BackgroundImage = styled.img`
 
 const RabbitContainer = styled.div`
   position: absolute;
-  top: 20%;
-  width: 50%;
+  top: 10%;
+  width: 75%;
+  max-width: 380px;
   min-width: 200px;
   right: 0;
   z-index: 1;

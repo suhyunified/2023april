@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { colors } from "../constants";
 
-import IconCategoryCoin from "@/shared/images/icon_category_coin.svg";
-import IconCategoryLeaf from "@/shared/images/icon_category_leaf.svg";
-import IconCategoryFlower from "@/shared/images/icon_category_flower.svg";
-import IconCategoryBadge from "@/shared/images/icon_category_badge.svg";
+import ImageCategoryCoin from "@/shared/images/icon_category_coin.png";
+import ImageCategoryLeaf from "@/shared/images/icon_category_leaf.png";
+import ImageCategoryFlower from "@/shared/images/icon_category_flower.png";
+import ImageCategoryBadge from "@/shared/images/icon_category_badge.png";
 
 import { css } from "@emotion/react";
 
@@ -19,19 +19,19 @@ export type CategoryType = typeof CategoryType[keyof typeof CategoryType];
 
 const CATEGORY_MAPPER: Record<CategoryType, { icon: string; name: string }> = {
   [CategoryType.Coin]: {
-    icon: IconCategoryCoin,
+    icon: ImageCategoryCoin,
     name: "금전",
   },
   [CategoryType.Leaf]: {
-    icon: IconCategoryLeaf,
+    icon: ImageCategoryLeaf,
     name: "건강",
   },
   [CategoryType.Flower]: {
-    icon: IconCategoryFlower,
+    icon: ImageCategoryFlower,
     name: "행복",
   },
   [CategoryType.Badge]: {
-    icon: IconCategoryBadge,
+    icon: ImageCategoryBadge,
     name: "합격",
   },
 };

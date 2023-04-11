@@ -39,6 +39,7 @@ const MainAfterCard = ({ counts }: Props) => {
           <br />
           소원이 이루어지는 중이에요!
         </Text>
+        <Spacing size={1} />
       </CardContents>
 
       <RabbitContainer>
