@@ -115,6 +115,7 @@ const ImageWrapper = styled.div`
   width: 100%;
   height: 100vh;
 `;
+
 const CoverImage = styled.img`
   width: 100%;
   height: 100%;
@@ -123,7 +124,7 @@ const CoverImage = styled.img`
 const RabbitContainer = styled.div`
   position: absolute;
   top: 20%;
-  width: 50%;
+  width: 75%;
   min-width: 200px;
   right: 0;
   z-index: 1;

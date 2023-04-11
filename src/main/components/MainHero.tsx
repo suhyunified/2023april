@@ -19,7 +19,6 @@ interface Props {
 }
 const MainHero = ({ counts }: Props) => {
   const navigate = useNavigate();
-  const { error, isLoading } = useGetProfile();
   const getMyWish = useGetMyWish();
   const FloatingBox = useRef<HTMLDivElement>(null);
   const [isFloatingNav, setIsFloatingNav] = useState(false);
@@ -39,8 +38,6 @@ const MainHero = ({ counts }: Props) => {
   }, []);
 
   const handlePostingButtonClick = () => {
-    if (error) return navigate("/login");
-
     navigate("/wish/new");
   };
 

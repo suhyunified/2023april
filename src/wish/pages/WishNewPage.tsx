@@ -18,6 +18,7 @@ const WishNewPage = () => {
     withAuth: true,
     withNickname: true,
   });
+
   const navigate = useNavigate();
   const [step, setStep] = useState<WishNewStep>(WishNewStep.Category);
   const [form, setForm] = useState<CreateWish.RequestBody>({

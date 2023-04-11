@@ -1,3 +1,4 @@
+import { GetProfile } from "@/login/types/apis";
 import { LOGIN_COOKIE_KEY } from "@/shared/constants";
 import { ApiResponse } from "@/shared/types/api";
 import { setCookie } from "@/shared/utils/cookie";
@@ -9,13 +10,8 @@ import { queryKeys } from "./queryKeys";
 import service from "./service";
 
 export const useGetProfile = () => {
-  return useQuery(queryKeys.getProfile(), service.getProfile, {
-    onError: (error: AxiosError) => {
-      if (error.response?.status === 500) {
-        const navigate = useNavigate();
-        setCookie(LOGIN_COOKIE_KEY, "");
-        navigate("/login");
-      }
-    },
-  });
+  return useQuery<AxiosResponse<GetProfile.Response>, AxiosError>(
+    queryKeys.getProfile(),
+    service.getProfile
+  );
 };

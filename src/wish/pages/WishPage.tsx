@@ -9,26 +9,27 @@ import { useGetWish } from "@/wish/hooks/apis";
 import { queryKeys } from "@/wish/hooks/apis/queryKeys";
 import { redirect, useNavigate, useParams } from "react-router-dom";
 import Layout from "@/shared/components/Layout";
+import useGuard from "@/shared/hooks/useGuard";
 
 interface Params {
   wishId: string;
 }
 
 const WishPage = () => {
+  useGuard({ withAuth: true });
+
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const params = useParams();
-  const navigate = useNavigate();
   const { wishId } = params;
-
-  const { data, isLoading, error } = useGetWish(+(wishId || 0));
+  const { data, isLoading } = useGetWish(+(wishId || 0));
 
   useEffect(() => {
     queryClient.invalidateQueries(queryKeys.getWish(+(wishId || 0)));
   }, [queryClient, wishId]);
 
-  if (error) navigate("/");
-  if (isLoading || !data) return <div></div>;
+  if (isLoading || !data) return <div />;
 
   return (
     <Layout>

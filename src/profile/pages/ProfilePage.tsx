@@ -30,7 +30,6 @@ const ProfilePage = () => {
   const user = profile?.data.data;
   const wish = myWish?.data.data;
   if (isLoading) return <div />;
-  console.log(wish);
 
   return (
     <Layout>

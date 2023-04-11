@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_COOKIE_KEY } from "../constants";
 import { getCookie } from "../utils/cookie";
@@ -9,20 +9,23 @@ interface Props {
   withNickname?: boolean;
 }
 
-const useGuard = ({ withAuth = false, withNickname = false }: Props) => {
+const useGuard = ({ withAuth = false, withNickname }: Props) => {
   const navigate = useNavigate();
   const isLogin = getCookie(LOGIN_COOKIE_KEY);
   const getProfile = useGetProfile();
   const nickname = getProfile.data?.data.data.nickname;
 
   useEffect(() => {
-    if (withAuth && !isLogin) navigate("/login");
-    if (withNickname) {
-      if (!nickname) navigate("/onboard");
-    } else {
-      if (nickname) navigate("/");
+    if (getProfile.isLoading) return;
+    if ((withAuth && !isLogin) || getProfile.error?.response?.status === 500) {
+      return navigate("/login");
     }
-  }, [isLogin, nickname]);
+    if (withNickname === true) {
+      if (!nickname) return navigate("/onboard");
+    } else if (withNickname === false) {
+      if (nickname) return navigate("/");
+    }
+  }, [isLogin, nickname, getProfile.isLoading]);
 };
 
 export default useGuard;

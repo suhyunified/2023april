@@ -8,10 +8,13 @@ import { WishFormContext } from "@/wish/context/wishForm";
 import Layout from "@/shared/components/Layout";
 import { WishNewStep } from "@/wish/constants";
 import { useGetMyWish } from "../hooks/apis/useGetMyWish";
+import useGuard from "@/shared/hooks/useGuard";
 
 const WishEditPage = () => {
-  const { data } = useGetMyWish();
-  console.log(data);
+  useGuard({
+    withAuth: true,
+    withNickname: true,
+  });
 
   const [step, setStep] = useState<WishNewStep>(WishNewStep.Category);
   const [form, setForm] = useState<CreateWish.RequestBody>({
