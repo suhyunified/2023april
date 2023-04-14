@@ -82,9 +82,7 @@ const WishNewContents = () => {
         align="center"
         lineHeight={1.875}
       >
-        {context.title}
-        <br />
-        {getProfile.data?.data.data.nickname}
+        {context.title} {getProfile.data?.data.data.nickname}
       </Text>
       <FlexGrow minHeight={5} />
       <Textarea

@@ -40,9 +40,7 @@ const WishInfo = ({ wish }: Props) => {
         align="center"
         lineHeight={1.875}
       >
-        {wish.title}
-        <br />
-        {wish.ownerNickname}
+        {wish.title} {wish.ownerNickname}
       </Text>
       <Spacing size={1.25} />
       <Contents>
