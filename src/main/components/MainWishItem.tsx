@@ -28,7 +28,15 @@ const MainWishItem = ({ wish }: Props) => {
             {wish?.title}
           </Text>
           <Spacing size={0.3} />
-          <Text css={css``} size={1} weight={600} color={colors.gray100}>
+          <Text
+            css={css`
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            `}
+            size={1}
+            weight={600}
+            color={colors.gray100}
+          >
             {wish.content}
           </Text>
         </WishDescription>

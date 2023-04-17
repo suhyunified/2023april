@@ -113,4 +113,5 @@ const Contents = styled.div`
   border-radius: 1.25rem;
   background-color: ${colors.white};
   word-break: break-all;
+  white-space: pre;
 `;
