@@ -29,6 +29,7 @@ const MainWishItem = ({ wish }: Props) => {
           </Text>
           <Spacing size={0.3} />
           <Text
+            ellipsis
             css={css`
               text-overflow: ellipsis;
               white-space: nowrap;

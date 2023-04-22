@@ -112,6 +112,6 @@ const Contents = styled.div`
   min-height: 3rem;
   border-radius: 1.25rem;
   background-color: ${colors.white};
-  word-break: break-all;
-  white-space: pre;
+  word-break: keep-all;
+  white-space: pre-line;
 `;

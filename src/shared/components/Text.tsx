@@ -11,6 +11,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   inline?: boolean;
   lineHeight?: number;
   chosun?: boolean;
+  ellipsis?: boolean;
 }
 const Text = ({
   size = 1,
@@ -20,6 +21,7 @@ const Text = ({
   chosun = false,
   align = "start",
   lineHeight,
+  ellipsis,
   ...rest
 }: Props) => {
   return (
@@ -33,8 +35,12 @@ const Text = ({
         font-weight: ${weight};
         white-space: inherit;
         word-break: inherit;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
+        ${ellipsis &&
+        css`
+          overflow: hidden;
+          text-overflow: ellipsis;
+        `}
 
         ${chosun &&
         css`
